@@ -18,7 +18,7 @@ with open(labels_path, 'r') as file:
 
 class YoloModel():
     
-    def __init__(self, weights_path, configuration_path, labels_path, prob_min=0.5, threshold=0.3):
+    def __init__(self, weights_url, configuration_path, labels_path, prob_min=0.5, threshold=0.3):
         self.name = "YOLO V3"
         self.weights_path = self.download_weights(weights_url)
         self.configuration_path = configuration_path
