@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import time
 import pandas as pd
 import imghdr
+from tempfile import NamedTemporaryFile
 
 from PIL import Image, ImageDraw, ImageFont
 import cv2
@@ -19,7 +20,7 @@ class YoloModel():
     
     def __init__(self, weights_path, configuration_path, labels_path, prob_min=0.5, threshold=0.3):
         self.name = "YOLO V3"
-        self.weights_path = weights_path
+        self.weights_path = self.download_weights(weights_url)
         self.configuration_path = configuration_path
         self.labels_path = labels_path
         self.probability_minimum = prob_min
@@ -32,6 +33,16 @@ class YoloModel():
         self.layers_names_output = self.network.getUnconnectedOutLayersNames()
         self.layers_names_all = self.network.getLayerNames()
 
+    def download_weights(self, weights_url):
+        response = requests.get(weights_url)
+        if response.status_code == 200:
+            temp_weights_file = NamedTemporaryFile(delete=False)
+            temp_weights_file.write(response.content)
+            temp_weights_file.close()
+            return temp_weights_file.name
+        else:
+            raise Exception("Falha ao baixar o arquivo de pesos.")
+    
     def show_architecture(self):
         layer_names = self.network.getLayerNames()
         print(f"=== {self.name} Architecture ===")
