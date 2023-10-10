@@ -1,6 +1,0 @@
-numpy==1.23.5
-opencv-contrib-python==4.8.0.76
-opencv-python==4.8.0.76
-opencv-python-headless==4.8.1.78
-tensorflow==2.13.0
-keras==2.13.1
