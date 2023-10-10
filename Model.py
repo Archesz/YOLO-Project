@@ -4,7 +4,7 @@ import time
 import pandas as pd
 import imghdr
 from tempfile import NamedTemporaryFile
-
+import requests
 from PIL import Image, ImageDraw, ImageFont
 import cv2
 
