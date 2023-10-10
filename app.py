@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image
 import tempfile
 
-weights_path = './files/yolov3.weights'
+weights_url = "https://pjreddie.com/media/files/yolov3.weights"
 configuration_path = './files/yolov3.cfg'
 labels_path = './files/coco.names'
 img_path = "./images/city_scene.jpg"
@@ -13,7 +13,7 @@ img_path = "./images/city_scene.jpg"
 with open(labels_path, 'r') as file:
     labels = file.read().strip().split('\n')
 
-yolo = YoloModel(weights_path, configuration_path, labels_path, prob_min=0.6, threshold=0.3)
+yolo = YoloModel(weights_url, configuration_path, labels_path, prob_min=0.6, threshold=0.3)
 
 st.set_page_config(page_title="Projeto YOLO - MS960")
 
